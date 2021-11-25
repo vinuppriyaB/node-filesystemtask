@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "ba179910-ad11-40ff-b95d-8ab9e6500ae4",
+		"name": "file",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "read file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5234/readfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"readfile"
+					]
+				},
+				"description": "We can retrieve the file from the folder with the extension \"readfile\"."
+			},
+			"response": []
+		},
+		{
+			"name": "create file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5234/createfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"createfile"
+					]
+				},
+				"description": "We can create the file in the name of date and time with the content timestamp inside the folder with the extension \"createfile\"."
+			},
+			"response": []
+		}
+	]
+}
