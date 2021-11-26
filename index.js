@@ -1,8 +1,10 @@
-const fs=require("fs");
-const express=require("express");
-const app=express();
-const PORT=5234;
 
+import fs from "fs";
+import express from "express"
+import dotenv from "dotenv";
+const app=express();
+
+const PORT = process.env.PORT || 5234;
 app.get("/",(request,response)=>{
     
     response.send("hello");
