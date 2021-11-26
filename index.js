@@ -7,7 +7,7 @@ const app=express();
 const PORT = process.env.PORT || 5234;
 app.get("/",(request,response)=>{
     
-    response.send("hello");
+    response.send("For create file '/createfile' \n For retrieve file '/readfile'");
 
 })
 app.get("/createfile",(request,response)=>{
