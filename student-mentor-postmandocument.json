@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "92d5fac9-3488-4d8b-848b-e41ec8c684eb",
+		"name": "student",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get student without mentor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://class-task.herokuapp.com/studentmentor/get/student/withoutmentor",
+					"protocol": "https",
+					"host": [
+						"class-task",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"studentmentor",
+						"get",
+						"student",
+						"withoutmentor"
+					]
+				},
+				"description": "API to get the Student list who doesn't have mentor  from  \"Student\" Database."
+			},
+			"response": []
+		},
+		{
+			"name": "get all student",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/student/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"student",
+						"get"
+					]
+				},
+				"description": "API to get the all Student name list  from  \"Student\" Database."
+			},
+			"response": []
+		},
+		{
+			"name": "get mentor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5234/mentor/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"mentor",
+						"get"
+					]
+				},
+				"description": "API to get the all Mentor name list  from  \"mentor\" Database."
+			},
+			"response": []
+		},
+		{
+			"name": "add student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"studentname\":\"kani\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/student/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"student",
+						"add"
+					]
+				},
+				"description": "API to add the student name to the \"student\" Database.Check if the student name is already exist or not.If exist ,it give the alert message  otherwise name added to the database"
+			},
+			"response": []
+		},
+		{
+			"name": "student by mentor name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/mentor?mentorname=maruthi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"mentor"
+					],
+					"query": [
+						{
+							"key": "mentorname",
+							"value": "maruthi"
+						}
+					]
+				},
+				"description": "API to show all students for a particular mentor"
+			},
+			"response": []
+		},
+		{
+			"name": "assign students",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"selectedmentorname\":\"iooii\",\n\"selectedstudentname\":\"vinu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/assignstudents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"assignstudents"
+					]
+				},
+				"description": "API to Assign a student to Mentor\nSelect one mentor and Add multiple Student \nA student who has a mentor should not be shown in List"
+			},
+			"response": []
+		},
+		{
+			"name": "assign mentor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"selectedmentorname\":\"kani\",\n\"selectedstudentname\":\"alex\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/assignmentor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"assignmentor"
+					]
+				},
+				"description": "API to Assign or Change Mentor for particular Student\nSelect One Student and Assign one Mentor"
+			},
+			"response": []
+		},
+		{
+			"name": "add mentor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mentorname\":\"iooii\",\n    \"student\":[\"vishal\",\"kani\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5234/studentmentor/mentor/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5234",
+					"path": [
+						"studentmentor",
+						"mentor",
+						"add"
+					]
+				},
+				"description": "API to add the mentor name to the \"mentor\" Database.Check if the mentor name is already exist or not.If exist ,it give the alert message  otherwise name added to the database"
+			},
+			"response": []
+		}
+	]
+}
