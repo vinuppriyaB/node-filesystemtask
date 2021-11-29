@@ -12,14 +12,42 @@ import {
     pushStudentByMentorName,
     pulloutStudentWhoAssignToOtherMentor,
     getStudentWithoutMentor,
-    addStudentName
+    addStudentName,
+    checkStudentNameExist,
+    checkMentorNameExist
 } from "../helper.js";
 
 const router = express.Router();
 router.post("/student/add",async(request,response)=>{
     const {studentname}= request.body;
-    const result = await addStudentName(studentname);
-    response.send(result);
+    const studentavail=await checkStudentNameExist(studentname)
+    
+    if(studentavail)
+    {
+      response.status(400).send("studentName available");
+    }
+    else{
+      const result = await addStudentName(studentname);
+      response.send(result);
+
+    }
+    
+
+})
+router.post("/mentor/add",async(request,response)=>{
+  const {mentorname}= request.body
+  const mentoravail=await checkMentorNameExist(mentorname)
+    
+    if(mentoravail)
+    {
+      response.status(400).send("MentorName available");
+    }
+    else{
+      const result = await addMentorName(mentorname);
+  response.send(result);
+
+    }
+  
 
 })
 router.get("/student/get",async(request,response)=>{
@@ -38,6 +66,7 @@ router.get("/get/student/withoutmentor",async(request,response)=>{
       response.send(movie);
 
 })
+
 router.put("/assignmentor",async(request,response)=>{
   const {selectedmentorname,selectedstudentname }= request.body
 
@@ -69,12 +98,7 @@ router.put("/assignstudents",async(request,response)=>{
   response.send(result2);
 
 })
-router.post("/mentor/add",async(request,response)=>{
-    const {mentorname}= request.body
-    const result = await addMentorName(mentorname);
-    response.send(result);
 
-})
 router.get("/mentor/get",async(request,response)=>{
   
   

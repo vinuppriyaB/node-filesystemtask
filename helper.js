@@ -123,6 +123,22 @@ async function addStudentName(studentname) {
     .insertOne({ studentname: studentname, mentor: "null" });
   return result;
 }
+async function checkStudentNameExist(studentname)
+{
+  const result = await client.db("B27rwd")
+    .collection("student")
+    .findOne({ studentname: studentname });
+      return result;
+
+}
+async function checkMentorNameExist(mentorname)
+{
+  const result = await client.db("B27rwd")
+    .collection("mentor")
+    .findOne({ mentorname: mentorname });
+      return result;
+
+}
 
 export{
     getAllStudentOFMentor,
@@ -137,4 +153,6 @@ export{
     pulloutStudentWhoAssignToOtherMentor,
     getStudentWithoutMentor,
     addStudentName,
+    checkStudentNameExist,
+    checkMentorNameExist
 }
