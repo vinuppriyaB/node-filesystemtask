@@ -1,41 +1,43 @@
-
 import fs from "fs";
 import express from "express"
 import dotenv from "dotenv";
-const app=express();
+import { MongoClient } from "mongodb";
+import cors from "cors";
+import {studentmentorRouter} from "./routes/userMentor.js";
+import { filesRouter } from "./routes/files.js";
 
+const app=express();
+dotenv.config();
 const PORT = process.env.PORT || 5234;
+
+const MONGO_URL = process.env.MONGO_URL;
+// mongodb+srv://vinuppriya:<password>@cluster0.xu3bs.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+app.use(express.json());
+app.use(cors());
+
+
+export async function createConnection() {
+  const client = new MongoClient(MONGO_URL);
+  await client.connect();
+  console.log("Mongodb connected");
+  
+  
+  return client;
+}
+
+export const client = await createConnection();
+
+
+
+
+
+app.use("/studentmentor",studentmentorRouter);
+app.use("/files",filesRouter);
+  
+
 app.get("/",(request,response)=>{
     
     response.send("For create file '/createfile' \n For retrieve file '/readfile'");
-
-})
-app.get("/createfile",(request,response)=>{
-
-    let dt=new Date();
-    console.log(dt);
-    let date=("0"+dt.getDate()).slice(-2);
-    let month=("0"+(dt.getMonth()+1)).slice(-2);
-    let year=dt.getFullYear();
-    let hours=dt.getHours();
-    let min=dt.getMinutes();
-    let sec=dt.getSeconds();
-    
-    fs.writeFile(`./filefolder/${date}.${month}.${year}-${hours}.${min}.${sec}.txt`,`${dt}`,function(error){
-        // /console.log("file created");
-    });   
-    response.send(`${date}.${month}.${year}-${hours}.${min}.${sec}.txt file created`);
-
-})
-app.get("/readfile",(request,response)=>{
-
-    
-    fs.readdir("./filefolder",function(error,files){
-        // console.log(files)
-        response.send(files);
-
-    });
-    
 
 })
 
@@ -43,3 +45,5 @@ app.get("/readfile",(request,response)=>{
 
     
 app.listen(PORT,()=>{console.log("server started")});
+
+
